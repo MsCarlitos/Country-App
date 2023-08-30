@@ -4,13 +4,18 @@
 <div class="row">
   <div class="col">
     <!-- Bosquedas -->
-    <shared-search-box (onValue)="searchByCapital($event)" placeholder="Buscar por Capital"></shared-search-box>
+    <shared-search-box
+      (onDebounce)="searchByCapital($event)"
+      placeholder="Buscar por Capital"
+      [initialValue]="initialValue"
+    ></shared-search-box>
   </div>
 </div>
 
-<div class="row">
+<div class="row" #loading>
   <div class="col">
     <hr>
+    <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
     <countries-table [countries]="countries"></countries-table>
   </div>
 </div>
